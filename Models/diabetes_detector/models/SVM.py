@@ -1,6 +1,7 @@
 import Models.diabetes_detector.database
 from sklearn import svm
 from sklearn.metrics import confusion_matrix, accuracy_score
+import time
 
 # ================================================
 # See how to remove this part:
@@ -80,9 +81,16 @@ svm_model = svm.SVC(kernel='linear')
 # verbose=False, max_iter=-1, decision_function_shape='ovr',
 # break_ties=False,
 # random_state=None):
-
 print("\nFitting the model...")
+
+start_time = time.time()
 svm_model.fit(X_train, y_train)
+stop_time = time.time()
+
+print(f"Start time: {start_time}\n")
+print(f"Stop time: {stop_time}\n")
+print(f"Training duration: {stop_time - start_time} seconds.")
+
 model_predict = svm_model.predict(X_test)
 
 print(f"CONFUSION MATRIX: {confusion_matrix(y_test, model_predict)}\n")
