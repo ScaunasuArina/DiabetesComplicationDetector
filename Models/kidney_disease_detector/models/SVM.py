@@ -1,4 +1,3 @@
-import Models.diabetes_detector.database
 from sklearn import svm
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split
@@ -11,28 +10,23 @@ from sklearn.preprocessing import normalize
 #             Low Variance Filter
 # ==============================================
 
-data = pd.read_csv('../database/diabetes_disease_formatted.csv')
+data = pd.read_csv('../database/kidney_disease_formatted.csv')
 print(f"SHAPE:\n{data.shape}\n\n")
 print(f"HEAD:\n{data.head()}\n\n")
 print(f"\nINFO:\n{data.info()}\n\n")
 print(f"DESCRIPTION:\n{data.describe(include='all')}\n\n")
 
-# Might need to drop some columns as we have 22 attributes
-# separating class attribute from input attributes
+# sepparating class attribute from input attributes for classification algorithms
+X = data.drop(['classification'], axis = 1)
+y = data['classification']
 
-# X = data.drop(['classification', 'sg', 'appet', 'rc', 'pcv', 'hemo', 'sod'], axis = 1)
-X = data.drop(['Diabetes'], axis = 1)
-y = data['Diabetes']
+print(f"X.columns: {X.columns}\n\n")
 
-print(f"X columns: {X.columns}")
-
-# Use Low Variance Filter to drop columns
-
-#before we calculate the variance of each variable, we need to make normalization
+# before we calculate the variance of each variable, we need to make normalization
 normalize = normalize(X)
 X_scaled = pd.DataFrame(normalize)
-print(f"X_scaled var: {X_scaled.var()}\n")
-print(f"X_scaled SHAPE: {X_scaled.shape}\n")
+print(f"X_scaled.var:{X_scaled.var()}\n")
+print(f"X_scaled SHAPE:\n{X_scaled.shape}\n\n")
 
 # storing the variance and name of variables
 variance = X_scaled.var()
@@ -42,45 +36,28 @@ columns = X.columns
 variable = [ ]
 
 for i in range(0,len(variance)):
-    if variance[i]>=0.0002: # we keep 13/21 attributes with this threshold
-    # if variance[i]>=0.0003: # we keep 7/21 attributes with this threshold
+    # if variance[i]>=0.000000003: # we keep 17/25 attributes with this threshold
+    # if variance[i]>=0.000000004: # we keep 14/25 attributes with this threshold
+    # if variance[i]>=0.00000001: # we keep 13/25 attributes with this threshold
+    if variance[i]>=0.0000001: # we keep 10/25 attributes with this threshold
         variable.append(columns[i])
 
-print(f"Variable len: {len(variable)}\n")
-print(f"Variable: {variable}\n\n")
+print(f"Variables list legth: {len(variable)}\n")
+print(f"Variables: {variable}\n\n")
 
 # creating a new dataframe using the above variables
 X = X[variable]
-print(f"X SHAPE: {X.shape}\n\n")
+print(f"New X SHAPE: {X.shape}\n\n")
 
 # Separate the data in train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.05, random_state = 42)
 
 # ==============================================
-#               SVM Model
+#                   SVM Model
 # ==============================================
 
-# svm_model = svm.SVC(kernel='rbf')
-svm_model = svm.SVC(kernel='linear')
+svm_model = svm.SVC(kernel='rbf')
 
-#coef_ = n_classes * (n_classes - 1) / 2
-#coef_ -> This is only available in the case of a linear kernel.
-
-# svm_model = svm.SVC(kernel='poly')
-
-# gamma : {'scale', 'auto'} or float, default='scale'
-# Kernel coefficient for 'rbf', 'poly' and 'sigmoid'
-
-# svm_model = svm.SVC(kernel='poly', gamma='auto')
-
-# svm_model = svm.SVC(kernel='sigmoid')
-
-# (self, *, C=1.0, kernel='rbf', degree=3, gamma='scale',
-# coef0=0.0, shrinking=True, probability=False,
-# tol=1e-3, cache_size=200, class_weight=None,
-# verbose=False, max_iter=-1, decision_function_shape='ovr',
-# break_ties=False,
-# random_state=None):
 print("\nFitting the model...")
 
 start_time = time.time()
@@ -95,4 +72,3 @@ model_predict = svm_model.predict(X_test)
 
 print(f"CONFUSION MATRIX: {confusion_matrix(y_test, model_predict)}\n")
 print(f"Accuracy is {round(accuracy_score(y_test, model_predict)*100, 2)}%\n")
-

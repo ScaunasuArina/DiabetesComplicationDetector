@@ -1,4 +1,4 @@
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split
 import time
@@ -53,24 +53,20 @@ print(f"New X SHAPE: {X.shape}\n\n")
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.05, random_state = 42)
 
 # ==============================================
-#             Random Forest Model
+#                   Naive Bayes Model
 # ==============================================
 
-# model = RandomForestClassifier(n_estimators = 10)
-# model = RandomForestClassifier(n_estimators = 20)
-radomForest_model = RandomForestClassifier()
+bayes_model = GaussianNB()
 
-print("\nFitting the model...")
 start_time = time.time()
-radomForest_model.fit(X_train, y_train)
+bayes_model.fit(X_train, y_train)
 stop_time = time.time()
 
 print(f"Start time: {start_time}\n")
 print(f"Stop time: {stop_time}\n")
 print(f"Training duration: {stop_time - start_time} seconds.")
 
-# Try a prediction
-model_predict = radomForest_model.predict(X_test)
+model_predict = bayes_model.predict(X_test)
 
 print(f"CONFUSION MATRIX: {confusion_matrix(y_test, model_predict)}\n")
 print(f"Accuracy is {round(accuracy_score(y_test, model_predict)*100, 2)}%\n")
