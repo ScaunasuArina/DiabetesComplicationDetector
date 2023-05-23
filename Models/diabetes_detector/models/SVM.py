@@ -1,6 +1,7 @@
 import Models.diabetes_detector.database
 from sklearn import svm
 from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.model_selection import train_test_split
 import time
 
 # ================================================
@@ -52,15 +53,14 @@ X = X[variable]
 print(f"X SHAPE: {X.shape}\n\n")
 
 
-# Sepparate the data in train and test
-from sklearn.model_selection import train_test_split
+# Separate the data in train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.05, random_state = 42)
 
-
+# ==============================================
+#               SVM Model
 # ==============================================
 
 # svm_model = svm.SVC(kernel='rbf')
-
 svm_model = svm.SVC(kernel='linear')
 
 #coef_ = n_classes * (n_classes - 1) / 2
