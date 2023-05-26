@@ -11,6 +11,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.05, rand
 
 random_forest_model = RandomForestModel()
 random_forest_model.fit_the_model(X_train, y_train)
+random_forest_model.predict_value_and_return_accuracy(X_test, y_test)
 
 class KidneyProvideResult():
     def __new__(cls):

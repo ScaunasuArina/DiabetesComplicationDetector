@@ -1,3 +1,4 @@
+# for each attribute, we create a class where we define mathematical functions for fuzzy values
 class Age:
     def __init__(self):
         pass

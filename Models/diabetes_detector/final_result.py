@@ -12,6 +12,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.05, rand
 # create the SVM object
 svm_model = SVMModel()
 svm_model.fit_the_model(X_train, y_train)
+svm_model.predict_value_and_return_accuracy(X_test, y_test)
 
 class DiabetesProvideResult():
     def __new__(cls):

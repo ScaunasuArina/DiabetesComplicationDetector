@@ -23,11 +23,11 @@ X_scaled = pd.DataFrame(normalize)
 print(f"X_scaled var: {X_scaled.var()}\n")
 print(f"X_scaled SHAPE: {X_scaled.shape}\n")
 
-# storing the variance and name of variables
+# store the variance and name of variables
 variance = X_scaled.var()
 columns = X.columns
 
-# saving the names of variables having variance more than a threshold value
+# save the names of variables having variance more than a threshold value
 variable = []
 
 for i in range(0,len(variance)):
@@ -63,5 +63,5 @@ X = X.rename(columns = {"HighBP": "blood_pressure",
                         "Income": "income",
                         "Classification": "classification"})
 
-# Save the formatted file
+# Save the formatted data to a new CSV file
 X.to_csv('diabetes_disease_low_variance_filter.csv', index=False)

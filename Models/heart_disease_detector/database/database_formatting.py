@@ -57,5 +57,5 @@ print(f"Absence heart disease values: {sum(data['classification'] == 0)}")
 print(f"New shape: {data.shape}")
 print(f"HEAD: {data.head()}")
 
-# Save the formatted file
+# Save the formatted data to a new CSV file
 data.to_csv('heart_disease_formatted.csv', index=False)

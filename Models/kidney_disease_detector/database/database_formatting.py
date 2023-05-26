@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 data = pd.read_csv('kidney_disease.csv')
 print(f"SHAPE:\n{data.shape}\n\n")
@@ -17,7 +16,7 @@ CategoricalColumns = ['rbc','sg','pc','pcc','ba','pcv','wc','rc','htn','dm','cad
 # verify missing values
 print(f"Missing values:\n{data.isnull().sum()}\n\n")
 
-# verify all attributes
+# check all attributes
 print(f'Classification unique: {data.classification.unique()}\n')
 print(f'Age unique: {data.age.unique()}\n')
 print(f'bp unique: {data.bp.unique()}\n')
@@ -41,7 +40,6 @@ data['pcv'].replace(["\t?","\t43"],np.nan, inplace=True)
 # fill missing values
 for columnName in CategoricalColumns:
     data[columnName].fillna(data[columnName].mode()[0], inplace=True)
-
 for columnName in NumericalColumns:
     data[columnName].fillna(data[columnName].mean(), inplace=True)
 
@@ -51,66 +49,67 @@ print(f"Missing values:\n{data.isnull().sum()}\n\n")
 encodeColumn = ['rbc','pc' ,'pcc' ,'ba' ,'htn' ,'dm' ,'cad' ,'appet' ,'pe' ,'ane']
 data = pd.get_dummies(data , columns=encodeColumn , prefix=encodeColumn , drop_first=True)
 
-# replace calssification attribute values to binary ones
+# replace classification attribute string values to binary ones
 data['classification'].replace(["ckd","notckd"],[1,0], inplace=True)
 print(f"Classification:\n{data.classification.value_counts()}\n\n")
 
 print(f"\nINFO:\n{data.info()}\n\n")
 
-# convert attributes from object to int/float
+# convert attributes from object type to int/float
 data['pcv']=data['pcv'].astype(int)
 data['wc']=data['wc'].astype(int)
 data['rc']=data['rc'].astype(float)
 print(f"\nINFO:\n{data.info()}\n\n")
 
-# see which attributes that are set as object we have
+# see which attributes that are set as type 'object'
 object_dtypes = data.select_dtypes(include = 'object')
 print(f"object_dtypes HEAD: {object_dtypes.head()}\n\n")
 
 # convert string values to boolean values
-dictonary = {
-    "rbc": {
-        "abnormal":1,
-        "normal": 0,
-    },
-    "pc":{
-        "abnormal":1,
-        "normal": 0,
-    },
-    "pcc":{
-        "present":1,
-        "notpresent":0,
-    },
-    "ba":{
-        "notpresent":0,
-        "present": 1,
-    },
-    "htn":{
-        "yes":1,
-        "no": 0,
-    },
-    "dm":{
-        "yes":1,
-        "no":0,
-    },
-    "cad":{
-        "yes":1,
-        "no": 0,
-    },
-    "appet":{
-        "good":1,
-        "poor": 0,
-    },
-    "pe":{
-        "yes":1,
-        "no":0,
-    },
-    "ane":{
-        "yes":1,
-        "no":0,
-    }
-}
-data=data.replace(dictonary)
+string_2_boolean_values = {
+                            "rbc": {
+                                "abnormal":1,
+                                "normal": 0,
+                            },
+                            "pc":{
+                                "abnormal":1,
+                                "normal": 0,
+                            },
+                            "pcc":{
+                                "present":1,
+                                "notpresent":0,
+                            },
+                            "ba":{
+                                "notpresent":0,
+                                "present": 1,
+                            },
+                            "htn":{
+                                "yes":1,
+                                "no": 0,
+                            },
+                            "dm":{
+                                "yes":1,
+                                "no":0,
+                            },
+                            "cad":{
+                                "yes":1,
+                                "no": 0,
+                            },
+                            "appet":{
+                                "good":1,
+                                "poor": 0,
+                            },
+                            "pe":{
+                                "yes":1,
+                                "no":0,
+                            },
+                            "ane":{
+                                "yes":1,
+                                "no":0,
+                            }
+                        }
+data = data.replace(string_2_boolean_values)
+
 print(f"HEAD:\n{data.head()}\n\n")
 print(f"Presence Chronic Kidney disease values: {sum(data['classification'] == 1)}")
 print(f"Absence Chronic Kidney disease values: {sum(data['classification'] == 0)}")
@@ -118,6 +117,6 @@ print(f"Absence Chronic Kidney disease values: {sum(data['classification'] == 0)
 # should drop 'id' column because it gives no information about the disease
 data = data.drop(['id'], axis = 1)
 
-# Save the formatted file
+# Save the formatted data to a new CSV file
 data.to_csv('kidney_disease_formatted.csv', index=False)
 

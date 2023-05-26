@@ -62,5 +62,5 @@ X = X.rename(columns = {"age": "age",
                         "wc": "white_blood_cell_count",
                         "Classification": "classification"})
 
-# Save the formatted file
+# Save the formatted data to a new CSV file
 X.to_csv('kidney_disease_low_variance_filter.csv', index=False)

@@ -4,6 +4,10 @@ class FuzzyInference:
 
     def inference_result(self, age, bp, bs, cholesterol, hr, ecg, op, cp, exercise, thallium, sex):
         output_sick1, output_sick2, output_sick3, output_sick4, output_healthy = ([] for i in range(5))
+        '''
+        This function take as input the dict containing all input attributes, 
+        and gives the fuzzy output based on classification_rules.
+        '''
 
         # rules
         # 1
