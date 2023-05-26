@@ -39,7 +39,7 @@ class Defuzzify:
         return numerator/denominator if denominator != 0 else 0
 
     def defuzzification_result(self, data):
-        #TODO: this needs to be changed as I have only 2 values for output (0 and 1) or change it in connexion output
+        #TODO: this needs to be changed as I have only 2 values for output (0 and 1) or change it in connexion output ???
         x_star = self.defuzzy_caculator(data)
         result = ""
         if x_star < 1.78:

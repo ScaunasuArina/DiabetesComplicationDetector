@@ -65,7 +65,7 @@ start_time = time.time()
 linear_model.fit(X_train, y_train)
 stop_time = time.time()
 
-print(f"Start time: {start_time}\n")
+print(f"Start time: {start_time}")
 print(f"Stop time: {stop_time}\n")
 print(f"Training duration: {stop_time - start_time} seconds.\n\n")
 
