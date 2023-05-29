@@ -36,3 +36,6 @@ print(f"\n\nKIDNEY DISEASE:\n predicted class: {kidney_final_result[0]}\n real c
 print(f"\n\nDIABETES DISEASE:\n predicted class: {diabetes_final_result[0]}\n real class: {y_test_diabetes[0]}")
 print(f"\n\nHEART DISEASE:\n predicted class: {heart_final_result[0]}\n real class: {y_test_heart[0]}")
 
+print(f"\nDIABETES size: {X_test_diabetes.shape}")
+print(f"KIDNEY size: {X_test_kidney.shape}")
+print(f"HEART size: {X_test_heart.shape}")
