@@ -5,14 +5,16 @@ from Models.heart_disease_detector.fuzzy_system.final_result import HeartProvide
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/start')
 def main_page():
-    return render_template('index.html')
+    # return render_template('index.html')
+    return "Successful connexion"
 
 @app.route('/diabetes_disease/result', methods=['GET', 'POST'])
 def diabetes_disease_final_result():
     input_dict = request.form.to_dict()
     print(input_dict)
+
     provide_result = DiabetesProvideResult()
     output = provide_result.get_final_result(input_dict=input_dict)
     return render_template('diabetes_result.html', output=output)
@@ -35,4 +37,4 @@ def heart_disease_final_result():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8448, debug=True)
+    app.run(host='0.0.0.0', port=8448, debug=True)
