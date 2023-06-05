@@ -13,8 +13,8 @@ class DiabetesProvideResult():
     @staticmethod
     def get_final_result(input_dict: dict) -> str:
         sickness_dict = {
-            '0': 'PRESENCE',
-            '1': 'ABSENCE'
+            '0': 'PREZENT',
+            '1': 'ABSENT'
         }
         sickness_level = svm_model.predict(input_dict)
         return str(sickness_dict[str(sickness_level[0])])

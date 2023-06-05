@@ -22,7 +22,7 @@ def main_page():
 @app.route('/diabetes_disease/result', methods=['GET', 'POST'])
 def diabetes_disease_final_result():
     input_dict = request.json
-    print(f"Got the following values: {input_dict}")
+    print(f"\nDIABETES DISEASE: Got the following values: {input_dict}")
 
     data_values = list(input_dict.values())
     data = []
@@ -33,35 +33,55 @@ def diabetes_disease_final_result():
     column_names = ['blood_pressure','cholestrol','bmi','smoker','physical_activity','fruits',
                     'general_health','mental_health','physical_health','sex','age',
                     'education','income']
-    # data_df = data_df[column_names]
     data_df = data_df.reindex(columns=column_names)
 
     provide_result = DiabetesProvideResult()
     output = provide_result.get_final_result(input_dict=data_df)
+    print(f"\nDIABETES DISEASE: Result is: {output}")
 
-    response = {
-        'response': output
-    }
+    response = {'response': output}
+    return jsonify(response)
 
+@app.route('/heart_disease/result', methods=['GET', 'POST'])
+def heart_disease_final_result():
+    input_dict = request.json
+    print(f"\nHEAERT DISEASE: Got the following values: {input_dict}")
+
+    data_values = list(input_dict.values())
+    data = []
+    data.append(data_values)
+    data_df = pd.DataFrame(data=data, columns=list(input_dict.keys()))
+
+    provide_result = HeartProvideResult()
+    output = provide_result.get_final_result(input_dict=data_df)
+    print(f"\nHEART DISEASE: Result is: {output}")
+
+    response = {'response': output}
     return jsonify(response)
 
 @app.route('/kidney_disease/result', methods=['GET', 'POST'])
 def kidney_disease_final_result():
-    # TODO: need to create the DataFrame
-    input_dict = request.form.to_dict()
-    print(input_dict)
-    provide_result = KidneyProvideResult()
-    output = provide_result.get_final_result(input_dict=input_dict)
-    return render_template('kidney_result.html', output=output)
+    input_dict = request.json
+    print(f"\nKIDNEY DISEASE: Got the following values: {input_dict}")
 
-@app.route('/heart_disease/result', methods=['GET', 'POST'])
-def heart_disease_final_result():
-    # TODO: need to create the DataFrame
-    input_dict = request.form.to_dict()
-    print(input_dict)
-    provide_result = HeartProvideResult()
-    output = provide_result.get_final_result(input_dict=input_dict)
-    return render_template('heart_result.html', output=output)
+    data_values = list(input_dict.values())
+    data = []
+    data.append(data_values)
+    data_df = pd.DataFrame(data=data, columns=list(input_dict.keys()))
+
+    # need to rearrange columns based on the order they were fit in the model
+    column_names = ['age','blood_pressure','blood_glucose_random','blood_urea',
+                    'serum_creatine','sodium','potassium','hemoglobin','packed_cell_volume',
+                    'white_blood_cell_count']
+
+    data_df = data_df.reindex(columns=column_names)
+
+    provide_result = KidneyProvideResult()
+    output = provide_result.get_final_result(input_dict=data_df)
+    print(f"\nKIDNEY DISEASE: Result is: {output}")
+
+    response = {'response': output}
+    return jsonify(response)
 
 
 if __name__ == '__main__':
