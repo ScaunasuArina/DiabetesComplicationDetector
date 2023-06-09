@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import time
 import pandas as pd
 
-data = pd.read_csv('../database/diabetes_disease_low_variance_filter.csv')
+data = pd.read_csv('../database/kidney_disease_low_variance_filter.csv')
 X = data.drop(['classification'], axis = 1)
 y = data['classification']
 # Separate the data in train and test

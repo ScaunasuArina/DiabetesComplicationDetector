@@ -10,16 +10,26 @@ print(f"DESCRIPTION:\n{data.describe(include='all')}\n\n")
 # select specific columns
 data_selected = data[[  'DIABETE3',
                         '_RFHYPE5',
-                        'TOLDHI2', '_CHOLCHK',
+                        'TOLDHI2',
+                        '_CHOLCHK',
                         '_BMI5',
                         'SMOKE100',
-                        'CVDSTRK3', '_MICHD',
+                        'CVDSTRK3',
+                        '_MICHD',
                         '_TOTINDA',
-                        '_FRTLT1', '_VEGLT1',
+                        '_FRTLT1',
+                        '_VEGLT1',
                         '_RFDRHV5',
-                        'HLTHPLN1', 'MEDCOST',
-                        'GENHLTH', 'MENTHLTH', 'PHYSHLTH', 'DIFFWALK',
-                        'SEX', '_AGEG5YR', 'EDUCA', 'INCOME2' ]]
+                        'HLTHPLN1',
+                        'MEDCOST',
+                        'GENHLTH',
+                        'MENTHLTH',
+                        'PHYSHLTH',
+                        'DIFFWALK',
+                        'SEX',
+                        '_AGEG5YR',
+                        'EDUCA',
+                        'INCOME2' ]]
 
 print(f"SHAPE:{data_selected.shape}\n\n")
 print(f"HEAD:{data_selected.head()}\n\n")
