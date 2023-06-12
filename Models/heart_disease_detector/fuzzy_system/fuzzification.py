@@ -374,40 +374,15 @@ class Sex:
             female=self.female(s)
         )
 
-
 class OutPutSick:
     def __int__(self):
         pass
 
-    def outPut_sick1(self, x):
-        if 0 < x <= 1:
+    def outPut_sick(self, x):
+        if 0 < x <= 2:
             return x
-        if 1 < x <= 2:
-            return 2 - x
-        else:
-            return 0
-
-    def outPut_sick2(self, x):
-        if 1 < x <= 2:
-            return x - 1
-        if 2 < x <= 3:
-            return 3 - x
-        else:
-            return 0
-
-    def outPut_sick3(self, x):
-        if 2 < x <= 3:
-            return x - 2
-        if 3 < x <= 4:
-            return 4 - x
-        else:
-            return 0
-
-    def outPut_sick4(self, x):
-        if 3 < x <= 3.75:
-            return (x-3)/(3.75-3)
-        if 3.75 < x:
-            return 1
+        if 2 < x <= 4:
+            return (4 - x)/ (4-2)
         else:
             return 0
 
@@ -418,7 +393,6 @@ class OutPutSick:
             return (1-x)/(1-0.25)
         else:
             return 0
-
 
 class Fuzzify:
     def __int__(self):

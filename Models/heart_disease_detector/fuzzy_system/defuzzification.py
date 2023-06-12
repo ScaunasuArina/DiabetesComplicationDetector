@@ -16,22 +16,13 @@ class Defuzzify:
 
         for point in points_of_sickness:
 
-            sick1 = output_sick.outPut_sick1(point)
-            sick1 = data['output_sick1'] if sick1 > data['output_sick1'] else sick1
-
-            sick2 = output_sick.outPut_sick2(point)
-            sick2 = data['output_sick2'] if sick2 > data['output_sick2'] else sick2
-
-            sick3 = output_sick.outPut_sick3(point)
-            sick3 = data['output_sick3'] if sick3 > data['output_sick3'] else sick3
-
-            sick4 = output_sick.outPut_sick4(point)
-            sick4 = data['output_sick4'] if sick4 > data['output_sick4'] else sick4
+            sick = output_sick.outPut_sick(point)
+            sick = data['output_sick'] if sick > data['output_sick'] else sick
 
             healthy = output_sick.healthy(point)
             healthy = data['output_healthy'] if healthy > data['output_healthy'] else healthy
 
-            result = max(sick1, sick2, sick3, sick4, healthy)
+            result = max(sick, healthy)
 
             numerator += result * point
             denominator += result
@@ -43,13 +34,7 @@ class Defuzzify:
         result = ""
         if x_star < 1.78:
              result += "healthy "
-        if 1 < x_star < 2.51:
-            result += "sick1 "
-        if 1.78 < x_star < 3.25:
-            result += "sick2 "
-        if 1.5 < x_star < 4.5:
-            result += "sick3 "
-        if 3.25 < x_star:
-            result += "sick4 "
+        else:
+            result += "sick"
         result += ": " + str(x_star)
         return result
