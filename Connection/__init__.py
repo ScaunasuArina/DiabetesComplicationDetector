@@ -9,10 +9,7 @@ app = Flask(__name__)
 
 @app.route('/start',methods=['GET', 'POST'])
 def main_page():
-    # return render_template('index.html')
     print("Called...")
-    input_dict = request.json
-    print(input_dict)
 
     response ={
         'result': 'Test OK'

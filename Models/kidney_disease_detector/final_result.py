@@ -13,8 +13,8 @@ class KidneyProvideResult():
     @staticmethod
     def get_final_result(input_dict: dict) -> str:
         sickness_dict = {
-            '0': 'PREZENTA RISC',
-            '1': 'ABSENTA RISC'
+            '0': 'ABSENT',
+            '1': 'PREZENT'
         }
         sickness_level = random_forest_model.predict(input_dict)
         return str(sickness_dict[str(sickness_level[0])])

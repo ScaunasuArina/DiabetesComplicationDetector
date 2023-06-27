@@ -24,8 +24,8 @@ class HeartProvideResult(object):
         sickness_level = defuzzification_res.defuzzification_result(fuzzy_sickness)
 
         if 'healthy' in sickness_level:
-            sickness_level = 'ABSENTA RISC'  # Absence of heart disease
+            sickness_level = 'ABSENT'  # Absence of heart disease
         else:
-            sickness_level = 'PREZENTA RISC'  # Presence of heart disease
+            sickness_level = 'PREZENT'  # Presence of heart disease
 
         return sickness_level

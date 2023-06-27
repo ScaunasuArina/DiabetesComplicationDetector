@@ -55,3 +55,4 @@ print(f"F1-score is {round(f1_score(y, model_predict) * 100, 2)}%")
 print(f"Precission is {round(precision_score(y, model_predict) * 100, 2)}%")
 print(f"Recall is {round(recall_score(y, model_predict) * 100, 2)}%")
 
+print((2* 89.56* 15.38)/(89.56+15.38))

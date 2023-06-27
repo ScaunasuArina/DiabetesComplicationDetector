@@ -122,7 +122,7 @@ class Cholesterol:
 
     def cholesterol_medium(self, x):
         if 188 < x <= 215:
-            return (x-215)/(215-188)
+            return (x-188)/(215-188)
         if 215 < x < 250:
             return (250-x)/(250-215)
         else:
@@ -132,7 +132,7 @@ class Cholesterol:
     def cholesterol_high(self, x):
         if 217 < x <= 263:
             return (x-217)/(263-217)
-        if 307 < x < 263:
+        if 263 < x < 307:
             return (307-x)/(307-263)
         else:
             return 0
@@ -321,7 +321,6 @@ class Exercise:
             false=self.notOK(ex)
         )
 
-
 class Thallium:
     def __init__(self):
         pass
@@ -351,7 +350,6 @@ class Thallium:
             high=self.high(th)
         )
 
-
 class Sex:
     def __init__(self):
         pass
@@ -379,18 +377,18 @@ class OutPutSick:
         pass
 
     def outPut_sick(self, x):
-        if 0 < x <= 2:
+        if 0 < x <= 0.5:
             return x
-        if 2 < x <= 4:
-            return (4 - x)/ (4-2)
+        if 0.5 < x <= 1:
+            return (1 - x)/(1 - 0.5)
         else:
             return 0
 
     def healthy(self, x):
-        if x <= 0.25:
+        if x <= 0:
             return 1
-        if 0.25 < x <= 1:
-            return (1-x)/(1-0.25)
+        if 0 < x <= 1:
+            return (1 - x)/(1 - 0)
         else:
             return 0
 
