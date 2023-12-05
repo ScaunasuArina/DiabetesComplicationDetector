@@ -1,5 +1,12 @@
 # DiabetesComplicationDetector
 
+This repository is part of the project along with the "AndroidDiabetesComplicationApp" repository.
+
+Project diagram:
+
+![conectare android-python-EN](https://github.com/ScaunasuArina/DiabetesComplicationDetector/assets/44116228/f31cc014-bae7-4143-8404-050718c9e896)
+
+
 Links for databases: 
 
 Diabetes Disease: https://www.kaggle.com/datasets/cdc/behavioral-risk-factor-surveillance-system    
